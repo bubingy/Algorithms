@@ -1,3 +1,3 @@
 # Algorithms
-implemention of some algorithms
+implemention of some algorithms  
 I'm new to cpp :-P
