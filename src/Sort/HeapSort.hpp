@@ -34,6 +34,8 @@ namespace heapsort {
 				 long long p_idx,
 				 bool is_max_heap)
 	{
+		assert(arr_size > 0);
+
 		long long e_idx = p_idx; // index of extremum
 		long long l_idx = 2 * p_idx + 1; // index of left child
 		long long r_idx = 2 * p_idx + 2; // index of right child
@@ -50,27 +52,90 @@ namespace heapsort {
 			BuildBinHeap(arr, arr_size, e_idx, is_max_heap);
 		}
 	};
+
+	/// <summary>
+	/// perform heapsort.
+	/// </summary>
+	/// <typeparam name="t"></typeparam>
+	/// <param name="arr">an array.</param>
+	/// <param name="arr_size">size of given array.</param>
+	/// <param name="reverse">set true will sort the array descending.</param>
+	template<typename t> void
+	Sort(t* arr, long long arr_size, bool reverse)
+	{
+		assert(arr_size > 0);
+
+		// build a binary heap 
+		bool is_max_heap = !reverse;
+		for (long long i = arr_size / 2 - 1; i >= 0; i--)
+			BuildBinHeap(arr, arr_size, i, is_max_heap);
+
+		// heapsort
+		for (long long i = arr_size - 1; i >= 0; i--)
+		{
+			sortutils::Swap(arr + 0, arr + i);
+			BuildBinHeap(arr, i, 0, is_max_heap);
+		}
+	};
+
+	/// <summary>
+	/// Get k th smallest element in array.
+	/// </summary>
+	/// <typeparam name="t"></typeparam>
+	/// <param name="arr">an array.</param>
+	/// <param name="k">k th smallest element.</param>
+	/// <param name="arr_size">size of given array.</param>
+	/// <returns>k th smallest element.</returns>
+	template<typename t> t
+	GetKthSmallest(t* arr, long long k, long long arr_size)
+	{
+		assert(arr_size > 0);
+		assert(k >= 1 && k <= arr_size);
+
+		// build a max heap 
+		bool is_max_heap = true;
+		for (long long i = k / 2 - 1; i >= 0; i--)
+			BuildBinHeap(arr, k, i, is_max_heap);
+
+		for (size_t i = k; i < arr_size; i++)
+		{
+			if (arr[i] < arr[0])
+			{
+				sortutils::Swap(arr + 0, arr + i);
+				BuildBinHeap(arr, k, 0, is_max_heap);
+			}
+		}
+		return arr[0];
+	};
+
+	/// <summary>
+	/// Get k th largest element in array.
+	/// </summary>
+	/// <typeparam name="t"></typeparam>
+	/// <param name="arr">an array.</param>
+	/// <param name="k">k th largest element.</param>
+	/// <param name="arr_size">size of given array.</param>
+	/// <returns>k th largest element.</returns>
+	template<typename t> t
+	GetKthLargest(t* arr, long long k, long long arr_size)
+	{
+		assert(arr_size > 0);
+		assert(k >= 1 && k <= arr_size);
+	
+		// build a min heap 
+		bool is_max_heap = false;
+		for (long long i = k / 2 - 1; i >= 0; i--)
+			BuildBinHeap(arr, k, i, is_max_heap);
+
+		for (size_t i = k; i < arr_size; i++)
+		{
+			if (arr[i] > arr[0])
+			{
+				sortutils::Swap(arr + 0, arr + i);
+				BuildBinHeap(arr, k, 0, is_max_heap);
+			}
+		}
+		return arr[0];
+	};
 }
 
-/// <summary>
-/// perform heapsort.
-/// </summary>
-/// <typeparam name="t"></typeparam>
-/// <param name="arr">an array.</param>
-/// <param name="arr_size">size of given array.</param>
-/// <param name="reverse">set true will sort the array descending.</param>
-template<typename t> void
-HeapSort(t* arr, long long arr_size, bool reverse)
-{
-	// build a binary heap 
-	bool is_max_heap = !reverse;
-	for (long long i = arr_size / 2 - 1; i >= 0; i--)
-		heapsort::BuildBinHeap(arr, arr_size, i, is_max_heap);
-
-	// heapsort
-	for (long long i = arr_size - 1; i >= 0; i--)
-	{
-		sortutils::Swap(arr + 0, arr + i);
-		heapsort::BuildBinHeap(arr, i, 0, is_max_heap);
-	}
-};

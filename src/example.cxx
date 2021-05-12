@@ -10,14 +10,8 @@ int main(int argc, char* argv[])
 	vector<int> arr = { 4,21,42,78,7,0,12,3,55 };
 	PrintArray(arr.data(), arr.size());
 
-	//HeapSort(arr.data(), arr.size(), false);
-	QuickSort(arr.data(), 0, arr.size() - 1, false);
+	auto kth = heapsort::GetKthSmallest(arr.data(), 4, arr.size());
 	PrintArray(arr.data(), arr.size());
-
-	arr = { 4,21,42,78,7,0,12,3,55 };
-	//HeapSort(arr.data(), arr.size(), true);
-	QuickSort(arr.data(), 0, arr.size() - 1, true);
-	PrintArray(arr.data(), arr.size());
-	
+	cout << kth << endl;
 	return 0;
 }
