@@ -44,6 +44,20 @@ namespace quicksort {
 	};
 
 	/// <summary>
+	/// Overload Partition
+	/// </summary>
+	/// <typeparam name="t"></typeparam>
+	/// <param name="arr">the given array.</param>
+	/// <param name="arr_size">size of array.</param>
+	/// <param name="reverse">set true will sort the array descending.</param>
+	/// <returns></returns>
+	template<typename t> long long
+	Partition(t* arr, long long arr_size, bool reverse)
+	{
+		return Partition(arr, 0, arr_size - 1, reverse);
+	}
+
+	/// <summary>
 	/// Perform quicksort.
 	/// </summary>
 	/// <typeparam name="t"></typeparam>
@@ -59,5 +73,18 @@ namespace quicksort {
 		long long pivot_idx = quicksort::Partition(arr, l_iter, r_iter, reverse);
 		Sort(arr, l_iter, pivot_idx - 1, reverse);
 		Sort(arr, pivot_idx + 1, r_iter, reverse);
+	};
+
+	/// <summary>
+	/// Overload Sort.
+	/// </summary>
+	/// <typeparam name="t"></typeparam>
+	/// <param name="arr">the given array.</param>
+	/// <param name="arr_size">size of array.</param>
+	/// <param name="reverse">set true will sort the array descending.</param>
+	template<typename t> void
+	Sort(t* arr, long long arr_size, bool reverse)
+	{
+		Sort(arr, 0, arr_size - 1; , reverse);
 	};
 }
