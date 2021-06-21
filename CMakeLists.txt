@@ -8,4 +8,4 @@ project ("Algorithms")
 include_directories("src/Sort")
 include_directories("src/Utils")
 
-add_executable("sort" src/example.cxx)
+add_executable("sort" src/example.cxx "src/Sort/MergeSort.hpp")
