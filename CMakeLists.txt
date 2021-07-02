@@ -7,5 +7,6 @@ project ("Algorithms")
 
 include_directories("src/Sort")
 include_directories("src/Utils")
+include_directories("src/DynamicProgram")
 
-add_executable("sort" src/example.cxx "src/Sort/MergeSort.hpp")
+add_executable("example" src/example.cxx)
