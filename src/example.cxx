@@ -1,13 +1,21 @@
-#include <vector>
-#include "MergeSort.hpp"
+#include <iostream>
+#include "CutRod.hpp"
 #include "print.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	vector<int> array = { -2,1,-3,4,8,2,11,-5,14 };
+	map<size_t, double> length_price_map;
+	length_price_map[1] = 3;
+	length_price_map[2] = 5;
+	length_price_map[3] = 8;
+	length_price_map[4] = 9;
+	length_price_map[5] = 10;
+	length_price_map[6] = 17;
+	length_price_map[7] = 17;
+	length_price_map[8] = 20;
 
-	mergesort::Sort(array.data(), array.size());
-	PrintArray(array.data(), array.size());
+	auto solution = MaximumValueCuttingUp(8, length_price_map);
+	PrintArray(solution.data(), solution.size());
 }

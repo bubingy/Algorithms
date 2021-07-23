@@ -2,6 +2,14 @@
 #include <vector>
 #include <list>
 
+/// <summary>
+/// Get a continuous subsequence from given array,
+/// so that its sum is maximum.
+/// </summary>
+/// <typeparam name="t"></typeparam>
+/// <param name="array">given array.</param>
+/// <param name="array_size">size of given array.</param>
+/// <returns>a continuous subsequence.</returns>
 template<typename t> std::list<t>
 MaximumSumSubsequence(t* array, size_t array_size)
 {
