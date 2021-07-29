@@ -44,7 +44,6 @@ MaximumValueKnapsack_Unbounded(size_t capacity,
 
 	for (size_t i = 1; i <= capacity; i++)
 	{
-		double temp_max_value = 0;
 		size_t previous_weight = 0;
 		size_t current_weight = 0;
 		for (iter = weight_value_map.begin(); 
@@ -52,35 +51,24 @@ MaximumValueKnapsack_Unbounded(size_t capacity,
 		{
 			if (i >= iter->first)
 			{
-				if (max_value[i - iter->first] + iter->second > temp_max_value)
+				if (max_value[i - iter->first] + iter->second > max_value[i])
 				{
-					temp_max_value = max_value[i - iter->first] + iter->second;
+					max_value[i] = max_value[i - iter->first] + iter->second;
 					previous_weight = i - iter->first;
 					current_weight = iter->first;
 				}
 			}
 		}
 		previous.push_back(std::tuple<size_t, size_t>(previous_weight, current_weight));
-		max_value[i] = temp_max_value;
-	}
-
-	size_t index_of_maximum = 0;
-	double temp_max_value = 0;
-	for (size_t i = 0; i < max_value.size(); i++)
-	{
-		if (max_value[i] > temp_max_value)
-		{
-			temp_max_value = max_value[i];
-			index_of_maximum = i;
-		}
 	}
 
 	std::vector<size_t> solution;
+	size_t index_of_current = capacity;
 
-	while (index_of_maximum != 0)
+	while (index_of_current != 0)
 	{
-		solution.push_back(std::get<1>(previous[index_of_maximum]));
-		index_of_maximum = std::get<0>(previous[index_of_maximum]);
+		solution.push_back(std::get<1>(previous[index_of_current]));
+		index_of_current = std::get<0>(previous[index_of_current]);
 	}
 	return solution;
 }

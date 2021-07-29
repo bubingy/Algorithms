@@ -1,5 +1,5 @@
 #include <iostream>
-#include "KnapsackProblem.hpp"
+#include "CutRod.hpp"
 #include "print.hpp"
 
 using namespace std;
@@ -16,6 +16,6 @@ int main(int argc, char* argv[])
 	length_price_map[7] = 17;
 	length_price_map[8] = 20;
 
-	auto solution = MaximumValueKnapsack_Unbounded(10, length_price_map);
+	auto solution = MaximumValueCuttingUp(10, length_price_map);
 	PrintArray(solution.data(), solution.size());
 }
