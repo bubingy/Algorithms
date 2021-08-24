@@ -1,11 +1,12 @@
 #include <iostream>
-#include "EggDroppingPuzzle.hpp"
+#include "CoinChange.hpp"
+#include "print.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	auto trials = EggDropping(2, 10);
-	cout << trials << endl;
-
+	std::vector<size_t> face_values = {1,5,10,20,50};
+	auto solution = CoinChange(face_values, 39);
+	PrintArray(solution.data(), solution.size());
 }
