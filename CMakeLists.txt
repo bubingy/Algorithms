@@ -8,6 +8,6 @@ project ("Algorithms")
 include_directories("src/Sort")
 include_directories("src/Utils")
 include_directories("src/DynamicProgram")
-include_directories("src/Tree")
+include_directories("src/Random")
 
 add_executable("example" src/example.cxx)
