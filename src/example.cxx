@@ -1,10 +1,10 @@
 #include <iostream>
-#include "EstimatePI.hpp"
+#include "EstimateEllipseCircumference.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	size_t N = 10000;
-	cout << EstimatePI(N) << endl;
+	size_t N = 1000000;
+	cout << EstimateEllipseCircumference(4, 3, N) << endl;
 }

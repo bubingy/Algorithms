@@ -1,8 +1,12 @@
-#include <thread>
 #include <assert.h>
 #include <chrono>
 #include <random>
 
+/// <summary>
+/// Estimate PI with Monte Carlo method.
+/// </summary>
+/// <param name="poch">sampling times.</param>
+/// <returns>PI</returns>
 double
 EstimatePI(size_t poch)
 {
