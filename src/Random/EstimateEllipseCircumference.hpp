@@ -1,10 +1,11 @@
+#include <omp.h>
 #include <assert.h>
 #include <math.h>
 #include <chrono>
 #include <random>
 
 double
-EstimateI1(double a, double b, size_t poch)
+EstimateI1(double a, double b, size_t poch = 10000000)
 {
 	assert(poch > 0);
 	assert(b > 0);
@@ -19,18 +20,27 @@ EstimateI1(double a, double b, size_t poch)
 
 	size_t circumference = 0;
 
-	for (size_t i = 0; i < poch; i++)
+	omp_lock_t lock;
+	omp_init_lock(&lock);
+
+#pragma omp parallel for
+	for (long long i = 0; i < poch; i++)
 	{
 		auto x = distX(engnX);
 		auto y = distY(engnY);
 		if (pow(y, 2) - 1 < pow(b, 2) * pow(x, 2) / pow(a, 2) / (pow(a, 2) - pow(x, 2)))
+		{
+			omp_set_lock(&lock);
 			circumference++;
+			omp_unset_lock(&lock);
+		}
 	}
+	omp_destroy_lock(&lock);
 	return (double)circumference / (double)poch * a * sqrt(1.0 + 4.0 * pow(b, 2) / 3.0 / pow(a, 2));
 }
 
 double
-EstimateI2(double a, double b, size_t poch)
+EstimateI2(double a, double b, size_t poch = 10000000)
 {
 	assert(poch > 0);
 	assert(b > 0);
@@ -45,13 +55,22 @@ EstimateI2(double a, double b, size_t poch)
 
 	size_t circumference = 0;
 
-	for (size_t i = 0; i < poch; i++)
+	omp_lock_t lock;
+	omp_init_lock(&lock);
+
+#pragma omp parallel for
+	for (long long i = 0; i < poch; i++)
 	{
 		auto x = distX(engnX);
 		auto y = distY(engnY);
 		if (pow(y, 2) - 1 < pow(a, 2) * pow(x, 2) / pow(b, 2) / (pow(b, 2) - pow(x, 2)))
+		{
+			omp_set_lock(&lock);
 			circumference++;
+			omp_unset_lock(&lock);
+		}
 	}
+	omp_destroy_lock(&lock);
 	return (double)circumference / (double)poch * sqrt(3) * b * sqrt(1.0 + 3.0 * pow(a, 2) / pow(b, 2));
 }
 
@@ -64,7 +83,7 @@ EstimateI2(double a, double b, size_t poch)
 /// <param name="poch">sampling times.</param>
 /// <returns>circumference of ellipse.</returns>
 double
-EstimateEllipseCircumference(double a, double b, size_t poch)
+EstimateEllipseCircumference(double a, double b, size_t poch = 10000000)
 {
 	assert(poch > 0);
 	assert(b > 0);

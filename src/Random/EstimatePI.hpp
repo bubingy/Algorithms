@@ -1,3 +1,4 @@
+#include <omp.h>
 #include <assert.h>
 #include <chrono>
 #include <random>
@@ -8,7 +9,7 @@
 /// <param name="poch">sampling times.</param>
 /// <returns>PI</returns>
 double
-EstimatePI(size_t poch)
+EstimatePI(size_t poch = 10000000)
 {
 	assert(poch > 0);
 
@@ -19,12 +20,21 @@ EstimatePI(size_t poch)
 
 	size_t pi = 0;
 
-	for (size_t i = 0; i < poch; i++)
+	omp_lock_t lock;
+	omp_init_lock(&lock);
+
+#pragma omp parallel for
+	for (long long i = 0; i < poch; i++)
 	{
 		auto x = distX(engnX);
 		auto y = distY(engnY);
 		if (x * x + y * y < 1)
+		{
+			omp_set_lock(&lock);
 			pi++;
+			omp_unset_lock(&lock);
+		}
 	}
+	omp_destroy_lock(&lock);
 	return 4.0 * (double)pi / poch;
 }
