@@ -9,22 +9,33 @@
 size_t
 EggDropping(size_t num_of_eggs, size_t num_of_floors)
 {
-    if (num_of_floors == 1 || num_of_floors == 0)
-        return num_of_floors;
+    std::vector<std::vector<size_t>> trials(num_of_eggs + 1,
+                                            std::vector<size_t>(num_of_floors + 1));
+	
+	size_t res;
+	size_t i, j, x;
+	// one trial for one floor and 0 trials for 0 floors
+	for (i = 0; i <= num_of_eggs; i++)
+	{
+		trials[i][0] = 0;
+		trials[i][1] = 1;
+	}
+	// always need j trials for one egg and j floors.
+	for (j = 0; j <= num_of_floors; j++) trials[1][j] = j;
 
-    if (num_of_eggs == 1)
-        return num_of_floors;
+	for (i = 2; i <= num_of_eggs; i++)
+	{
+		for (j = 2; j <= num_of_floors; j++)
+		{
+			trials[i][j] = INT_MAX;
+			for (x = 1; x <= j; x++)
+			{
+				res = 1 + std::max(trials[i - 1][x - 1],
+								   trials[i][j - x]);
+				if (res < trials[i][j]) trials[i][j] = res;
+			}
+		}
+	}
 
-    size_t min = num_of_floors + 1;
-    size_t res;
-
-    for (size_t x = 1; x <= num_of_floors; x++) {
-        res = std::max(
-            EggDropping(num_of_eggs - 1, x - 1),
-            EggDropping(num_of_eggs, num_of_floors - x));
-        if (res < min)
-            min = res;
-    }
-
-    return min + 1;
+	return trials[num_of_eggs][num_of_floors];
 };
