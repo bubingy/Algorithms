@@ -4,6 +4,16 @@
 #include <fstream>
 
 namespace externalsort {
+	/// <summary>
+	/// Assume there are two text files.
+	/// Each file contains some numbers 
+	/// which are sorted in ascending order.
+	/// This method will merge two files in one 
+	/// and keep all the numbers in ascending order.
+	/// </summary>
+	/// <param name="input_file_path1">path of input file1.</param>
+	/// <param name="input_file_path2">path of input file2.</param>
+	/// <param name="output_file_path">path of output file.</param>
 	void
 	Merge(const char* input_file_path1,
 		  const char* input_file_path2,
