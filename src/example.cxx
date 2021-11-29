@@ -1,12 +1,19 @@
-#include "print.hpp"
-#include "ExternalSort.hpp"
+#include <iostream>
+#include "KMP.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	const char* input_file_path1 = "D:\\Workspace\\py_test\\1.txt";
-	const char* input_file_path2 = "D:\\Workspace\\py_test\\2.txt";
-	const char* output_file_path = "D:\\Workspace\\py_test\\output.txt";
-	externalsort::Merge(input_file_path1, input_file_path2, output_file_path);
+	char* txt = "ttafdijmemageaprgmaddf";
+	size_t txt_length = 22;
+	char* parttern = "addf";
+	size_t pattern_length = 4;
+	auto index = MatchPattern(txt, txt_length, parttern, pattern_length);
+	for (size_t i = 0; i < txt_length; i++)
+	{
+		if (i == index) cout << "{";
+		cout << txt[i];
+		if (i + 1 == index + pattern_length) cout << "}";
+	}
 }
