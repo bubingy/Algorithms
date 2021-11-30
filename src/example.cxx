@@ -5,10 +5,10 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	char* txt = "ttafdijmemageaprgmafdf";
-	size_t txt_length = 22;
-	char* parttern = "afd";
-	size_t pattern_length = 3;
+	char* txt = "aaaaaaaaaafdee";
+	size_t txt_length = 14;
+	char* parttern = "aafde";
+	size_t pattern_length = 5;
 	auto index_list = MatchPattern(txt, txt_length, parttern, pattern_length);
 	for (auto index : index_list)
 	{
