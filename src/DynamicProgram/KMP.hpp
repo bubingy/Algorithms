@@ -9,14 +9,15 @@ MatchPattern(char* txt, size_t txt_length, char* parttern, size_t parttern_lengt
 	{ 
 		k = temp;
 		for (i = txt_length; i > k; i--)
+		{
 			if (dp[i - 1] == j && txt[i - 1] == parttern[j]) 
 			{
 				dp[i] = dp[i - 1] + 1;
 				temp = i;
 			}
+		}
 	}
 				
-
 	std::vector<size_t> result;
 
 	for (i = txt_length; i >= k - 1; i--)
