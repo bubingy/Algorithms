@@ -16,6 +16,7 @@ include_directories("src/Sort")
 include_directories("src/Utils")
 include_directories("src/DynamicProgram")
 include_directories("src/Random")
+include_directories("src/others")
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
