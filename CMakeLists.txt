@@ -14,6 +14,7 @@ endif()
 
 include_directories("src/Sort")
 include_directories("src/Utils")
+include_directories("src/Tree")
 include_directories("src/DynamicProgram")
 include_directories("src/Random")
 include_directories("src/others")
