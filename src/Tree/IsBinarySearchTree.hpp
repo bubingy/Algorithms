@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GetExtremumElementFromTree.hpp"
 
 namespace tree
