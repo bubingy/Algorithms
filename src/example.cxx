@@ -1,15 +1,11 @@
 #include <iostream>
 #include <string>
-#include "Fibonacci.h"
+#include "FullPermutation.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Fibonacci* f = new Fibonacci();
-	for (size_t i = 1; i <= 10; i++)
-	{
-		cout << f->get(i) << endl;
-	}
-	
+	FullPermutation* p = new FullPermutation("abcd");
+	p->ListAllPermutation();
 }
