@@ -18,7 +18,7 @@ include_directories("src/Tree")
 include_directories("src/DynamicProgram")
 include_directories("src/Random")
 include_directories("src/Math")
-include_directories("src/others")
+include_directories("src/Others")
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)

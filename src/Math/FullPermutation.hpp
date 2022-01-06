@@ -26,6 +26,20 @@ FullPermutation::FullPermutation(const std::string origin_string):
 
 FullPermutation::~FullPermutation() {};
 
+/// <summary>
+/// Generate full permutation.
+/// Here is an illustration for this algothrim: index of `x` is i,
+/// `+` denotes sub-string before `x`, `-` denotes sub-string behind `x`.
+/// ++++++++x--------
+///			^
+///			i
+/// take `x` out of the string and generate full permutations of `++++++++--------`,
+/// concatenate `x` with each item of full permutations of `++++++++--------`,
+/// then we can get all permutations start with `x`.
+/// Go through the whole string, and we can generate full permutations. 
+/// </summary>
+/// <param name="input_string"></param>
+/// <param name="current_string"></param>
 void
 FullPermutation::_ListAllPermutation(std::string input_string,
 	std::string current_string)
