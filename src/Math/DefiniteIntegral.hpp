@@ -22,7 +22,6 @@ SimpleDefiniteIntegral(double (*func)(double), double lower_limit, double upper_
 		if (matrix_size <= 0) break;
 
 		x = Eigen::ArrayXd::LinSpaced(matrix_size + 1, lower_limit, lower_limit + ((double)(matrix_size + 1)) * dx);
-		x *= -x;
 		v = x.unaryExpr(std::ref(func));
 		v = v.array();
 		I += (2 * v(Eigen::seq(1, matrix_size - 1)).sum() + v[0] + v[matrix_size]) * dx / 2;
