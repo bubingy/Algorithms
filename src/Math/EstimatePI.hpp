@@ -1,19 +1,15 @@
-#include <math.h>
+#pragma once
+
+#include <cmath>
+#include "DefiniteIntegral.hpp"
+
+double N = pow(2, 20);
+double dx = 1 / N;
 
 double
 EstimatePI()
 {
-	double N = 1000000;
-	double dx = 1 / N;
-
-	double I = 0;
-
-	for (double i = 0; i < 12 * N;)
-	{
-		double x = -(i * dx) * (i * dx);
-		I = I + exp(x) * dx;
-		i = i + 1;
-	}
+	double I = SimpleDefiniteIntegral(exp, 0, 12, dx);
 	double pi = 4 * I * I;
 	return pi;
 }
