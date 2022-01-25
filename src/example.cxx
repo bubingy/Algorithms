@@ -1,12 +1,9 @@
 #include <iostream>
-#include <string>
-#include <iomanip>
-#include "EstimatePI.hpp"
-
+#include "NumberTheory.hpp"
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	double pi = EstimatePI();
-	cout << setprecision(32) << "PI: " << pi << endl;
+	auto a = GreatestCommonDivisor(100, 10);
+	cout << a << endl;
 }
