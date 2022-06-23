@@ -25,7 +25,7 @@ namespace sort {
 	}
 
 	template<typename T> inline long long
-		Partition(T* arr, long long l_iter, long long r_iter, bool reverse)
+		Partition(T* arr, long long l_iter, long long r_iter)
 	{
 		long long pivot_idx = l_iter;
 		T pivot = arr[l_iter];
@@ -42,11 +42,11 @@ namespace sort {
 	};
 
 	template<typename T> void
-	Sort(T* arr, long long l_iter, long long r_iter)
+		QuickSort(T* arr, long long l_iter, long long r_iter)
 	{
 		if (l_iter >= r_iter) return;
 
-		long long pivot_idx = quicksort::Partition(arr, l_iter, r_iter);
+		long long pivot_idx = Partition(arr, l_iter, r_iter);
 		Sort(arr, l_iter, pivot_idx - 1);
 		Sort(arr, pivot_idx + 1, r_iter);
 	};
