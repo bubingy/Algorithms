@@ -52,13 +52,17 @@ namespace sort {
 	template <typename T> void
 		HeapSort(T* sequence, size_t sequence_length)
 	{
-		for (size_t i = sequence_length / 2 - 1;  i != 0;  i--)
+		for (size_t i = sequence_length / 2 - 1; i >= 0; i--)
+		{
 			BuildHeap(sequence, sequence_length, i);
+			if (i == 0) break;
+		}
 
-		for (size_t i = sequence_length; i != 0; i--)
+		for (size_t i = sequence_length - 1; i >= 0; i--)
 		{
 			Swap(sequence[0], sequence[i]);
 			BuildHeap(sequence, i, 0);
+			if (i == 0) break;
 		}
 	}
 }

@@ -1,15 +1,16 @@
 #include <iostream>
-#include "SelectionSort.hpp"
+#include "MergeSort.hpp"
 
 using namespace std;
 using namespace sort;
 
 int main(int argc, char* argv[])
 {
-	int a[7] = { 10, 80, 30, 90, 40, 50, 70 };
-	SimpleSelectionSort(a, 7);
+	int a[8] = { 10, 80, 85, 90, 20, 40, 50, 70 };
+	int b[8] = { 0 };
+	MergeSort(a, b, 0, 7);
 
-	for (size_t i = 0; i < 7; i++)
-		cout << a[i] << " ";
+	for (size_t i = 0; i < 8; i++)
+		cout << b[i] << " ";
 	
 }

@@ -1,68 +1,33 @@
 #pragma once
 
-#include "SortUtils.hpp"
-
-namespace mergesort {
-	template <typename t> void
-	Merge(t* array, size_t left, size_t mid, size_t right)
+namespace sort {
+	template <typename T> void
+		Merge(T* source_sequence, T* target_sequence, size_t low, size_t mid, size_t high)
 	{
-		auto const subArrayOne = mid - left + 1;
-		auto const subArrayTwo = right - mid;
-
-		// Create temp arrays
-		auto* leftArray = new t[subArrayOne];
-		auto* rightArray = new t[subArrayTwo];
-
-		for (size_t i = 0; i < subArrayOne; i++)
-			leftArray[i] = array[left + i];
-		for (size_t j = 0; j < subArrayTwo; j++)
-			rightArray[j] = array[mid + 1 + j];
-
-		size_t indexOfSubArrayOne = 0; // Initial index of first sub-array
-		size_t indexOfSubArrayTwo = 0; // Initial index of second sub-array
-		size_t indexOfMergedArray = left; // Initial index of merged array
-
-		// Merge the temp arrays back into array[left..right]
-		while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
-			if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
-				array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-				indexOfSubArrayOne++;
-			}
-			else {
-				array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-				indexOfSubArrayTwo++;
-			}
-			indexOfMergedArray++;
+		size_t i = low, j = mid + 1, k = low;
+		while (i <= mid && j <= high)
+		{
+			if (source_sequence[i] <= source_sequence[j])
+				target_sequence[k++] = source_sequence[i++];
+			else
+				target_sequence[k++] = source_sequence[j++];
 		}
-		// Copy the remaining elements of
-		// left[], if there are any
-		while (indexOfSubArrayOne < subArrayOne) {
-			array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-			indexOfSubArrayOne++;
-			indexOfMergedArray++;
-		}
-		// Copy the remaining elements of
-		// right[], if there are any
-		while (indexOfSubArrayTwo < subArrayTwo) {
-			array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-			indexOfSubArrayTwo++;
-			indexOfMergedArray++;
-		}
+		while (i <= mid) target_sequence[k++] = source_sequence[i++];
+		while (j <= high) target_sequence[k++] = source_sequence[j++];
 	};
 
-	template <typename t> void
-	MergeSort(t* array, size_t begin, size_t end) {
-		if (begin >= end)
+	template <typename T> void
+		MergeSort(T* source_sequence, T* target_sequence, size_t low, size_t high) 
+	{
+		if (low >= high)
+		{
+			target_sequence[low] = source_sequence[low];
 			return;
-
-		size_t mid = begin + (end - begin) / 2;
-		MergeSort(array, begin, mid);
-		MergeSort(array, mid + 1, end);
-		Merge(array, begin, mid, end);
+		}
+		size_t mid = (low + high) / 2;
+		MergeSort(source_sequence, target_sequence, low, mid);
+		MergeSort(source_sequence, target_sequence, mid + 1, high);
+		Merge(source_sequence, target_sequence, low, mid, high);
 	};
 
-	template <typename t> void
-	Sort(t* array, size_t array_size) {
-		MergeSort(array, 0, array_size - 1);
-	};
 }
