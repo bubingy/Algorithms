@@ -20,9 +20,9 @@ namespace tree {
 	{
 		if (root)
 		{
-			PreOrder(root->leftchild, output_sequence);
+			InOrder(root->leftchild, output_sequence);
 			output_sequence->push_back(root->data);
-			PreOrder(root->rightchild, output_sequence);
+			InOrder(root->rightchild, output_sequence);
 		}
 	}
 
@@ -31,8 +31,8 @@ namespace tree {
 	{
 		if (root)
 		{
-			PreOrder(root->leftchild, output_sequence);
-			PreOrder(root->rightchild, output_sequence);
+			PostOrder(root->leftchild, output_sequence);
+			PostOrder(root->rightchild, output_sequence);
 			output_sequence->push_back(root->data);
 		}
 	}

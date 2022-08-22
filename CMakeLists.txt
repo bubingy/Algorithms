@@ -8,12 +8,10 @@ project ("Algorithms")
 include_directories("src/Sort")
 include_directories("src/Utils")
 include_directories("src/Tree")
-include_directories("src/ChainList")
 include_directories("src/DynamicProgram")
 include_directories("src/Graph")
 include_directories("src/Others")
 
-include_directories("lib/eigen")
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)

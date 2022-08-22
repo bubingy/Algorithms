@@ -47,8 +47,8 @@ namespace sort {
 		if (l_iter >= r_iter) return;
 
 		long long pivot_idx = Partition(arr, l_iter, r_iter);
-		Sort(arr, l_iter, pivot_idx - 1);
-		Sort(arr, pivot_idx + 1, r_iter);
+		QuickSort(arr, l_iter, pivot_idx - 1);
+		QuickSort(arr, pivot_idx + 1, r_iter);
 	};
 
 }
