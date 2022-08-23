@@ -1,18 +1,41 @@
 #include <iostream>
-#include "Huffman.hpp"
-#include "Traversal.hpp"
+#include "Graph/Traversal.hpp"
 
 using namespace std;
-using namespace tree;
+using namespace graph;
 
 int main(int argc, char* argv[])
 {
-	int sequence[8] = { 5, 29, 7, 8, 14, 23, 3, 11 };
+	bool visit_state[8] = { false };
+	size_t graph_matrix[8][8] = { 0 };
 
-	auto root = HuffmanTree(sequence, 8);
-	list<int>* out_sequence = new list<int>();
-	InOrder(root, out_sequence);
-	for (auto i : *out_sequence)
+	graph_matrix[0][1] = 1;
+	graph_matrix[1][0] = 1;
+
+	graph_matrix[1][3] = 1;
+	graph_matrix[3][1] = 1;
+	graph_matrix[1][4] = 1;
+	graph_matrix[4][1] = 1;
+
+	graph_matrix[7][3] = 1;
+	graph_matrix[3][7] = 1;
+	graph_matrix[7][4] = 1;
+	graph_matrix[4][7] = 1;
+
+	graph_matrix[0][2] = 1;
+	graph_matrix[2][0] = 1;
+	graph_matrix[5][2] = 1;
+	graph_matrix[2][5] = 1;
+
+	graph_matrix[6][2] = 1;
+	graph_matrix[2][6] = 1;
+	graph_matrix[6][5] = 1;
+	graph_matrix[5][6] = 1;
+
+	list<size_t>* output_sequence = new list<size_t>();
+	graph::BreadthFirstSearch(graph_matrix, visit_state, 8, output_sequence);
+
+	for (auto i : *output_sequence)
 	{
 		cout << i << " ";
 	}
