@@ -26,10 +26,10 @@ namespace graph {
 
 	template <typename T> void
 		BreadthFirstSearch(T* graph_matrix,
-							bool* visit_state,
 							size_t node_number,
 							std::list<size_t>* output_sequence)
 	{
+		bool* visit_state = new bool[node_number];
 		if (node_number >= 1)
 		{
 			output_sequence->push_back(0);
@@ -50,5 +50,7 @@ namespace graph {
 				visit_state[i] = true;
 			}
 		}
+
+		delete[] visit_state;
 	}
 }
