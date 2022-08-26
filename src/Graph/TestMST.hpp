@@ -7,12 +7,12 @@ namespace graph {
 	class TestGraphMST
 	{
 		const size_t graph_matrix[6][6] = {
-			{0,6,1,5,0,0},
-			{6,0,5,0,3,0},
-			{1,5,0,5,6,4},
-			{5,0,5,0,0,2},
-			{0,3,6,0,0,6},
-			{0,0,4,2,6,0} };
+			{INFINITY,6,1,5,INFINITY,INFINITY},
+			{6,INFINITY,5,INFINITY,3,INFINITY},
+			{1,5,INFINITY,5,6,4},
+			{5,INFINITY,5,INFINITY,INFINITY,2},
+			{INFINITY,3,6,INFINITY,INFINITY,6},
+			{INFINITY,INFINITY,4,2,6,INFINITY} };
 
 		void TestPrim()
 		{

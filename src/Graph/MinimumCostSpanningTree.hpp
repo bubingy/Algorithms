@@ -2,6 +2,7 @@
 
 #include <list>
 #include <tuple>
+#include <math.h>
 
 namespace graph {
 	template <typename T> void
@@ -28,7 +29,7 @@ namespace graph {
 				{
 					if (visit_state[j] == true) continue; // choose nodes from V-U
 
-					if (graph_matrix[i][j] == 0) continue; // ignore unreachable nodes
+					if (graph_matrix[i][j] == INFINITY) continue; // ignore unreachable nodes
 					if (i == j) continue; // ignore the itself
 
 					if (graph_matrix[i][j] < min_cost)
@@ -73,7 +74,7 @@ namespace graph {
 				for (size_t j = 0; j < node_number; j++)
 				{
 					if (connected_component[i] == connected_component[j]) continue; // ignore node in same connected component
-					if (graph_matrix[i][j] == 0) continue; // ignore unreachable nodes
+					if (graph_matrix[i][j] == INFINITY) continue; // ignore unreachable nodes
 					if (i == j) continue; // ignore the itself
 
 					if (graph_matrix[i][j] < min_cost)

@@ -16,7 +16,7 @@ namespace graph {
 
 		for (size_t i = 0; i < node_number; i++)
 		{
-			if (graph_matrix[current_node_index][i] == 0) continue; // ignore unreachable nodes
+			if (graph_matrix[current_node_index][i] == INFINITY) continue; // ignore unreachable nodes
 			if (visit_state[i] == true) continue; // ignore visited nodes
 			if (i == current_node_index) continue; // ignore the itself
 			
@@ -43,7 +43,7 @@ namespace graph {
 			current_node_index = *iter;
 			for (size_t i = 0; i < node_number; i++) 
 			{
-				if (graph_matrix[current_node_index][i] == 0) continue; // ignore unreachable nodes
+				if (graph_matrix[current_node_index][i] == INFINITY) continue; // ignore unreachable nodes
 				if (visit_state[i] == true) continue; // ignore visited nodes
 				if (i == current_node_index) continue; // ignore the itself
 				output_sequence->push_back(i);

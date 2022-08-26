@@ -5,7 +5,7 @@
 namespace graph {
 	class TestGraphTraversal
 	{
-		const size_t graph_matrix[8][8] = { 0 };
+		const size_t graph_matrix[8][8] = { INFINITY };
 		graph_matrix[0][1] = 1;
 		graph_matrix[1][0] = 1;
 
